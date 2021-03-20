@@ -5,10 +5,6 @@ import Dice from './Component/DiceDisplay'
 import Goal from './Component/Goal'
 import './App.css';
 
-
-
-
-
 class App extends React.Component {
   constructor(props) {
     super();
@@ -23,7 +19,7 @@ class App extends React.Component {
       name: ['Gilad', 'Player2'],
       score: [0, 0],
       currentScore: [0, 0],
-      goal: 12
+      goal: 12,
     }
   }
 
@@ -39,9 +35,9 @@ class App extends React.Component {
 
   componentDidUpdate() {
     if (this.state.score[0] >= this.state.goal) {      //the houndrents will be the goal target
-      console.log('Player1 Wins!')
+     console.log('P1 Wins')
     } else if (this.state.score[1] >= this.state.goal) {
-      console.log('Player2 Wins')
+     console.log('P2 Wins')
     }
   }
 
@@ -90,14 +86,18 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Player key={this.state.name[0]} name={this.state.name[0]} score={this.state.score[0]} current={this.state.currentScore[0]} />
+        <Player key={this.state.name[0]} name={this.state.name[0]}
+         score={this.state.score[0]} current={this.state.currentScore[0]}
+          myclass={this.state.isPlayer1} winner={this.state.Player1Win}/>
         <Button name="New Game" onClick={this.newGame} />
         <Dice dice1={this.state.dice[0]} dice2={this.state.dice[1]} />
         <Button name="Roll Dice" onClick={this.rollTheDice} />
         <Button name="Hold" onClick={this.holdTurn} />
         <Goal newGoal={this.setGoal} />
         <Button name="Set Goal" onClick={this.setGoal} />
-        <Player key={this.state.name[1]} name={this.state.name[1]} score={this.state.score[1]} current={this.state.currentScore[1]} />
+        <Player key={this.state.name[1]} name={this.state.name[1]} 
+        score={this.state.score[1]} current={this.state.currentScore[1]} 
+        myclass={!this.state.isPlayer1} winner={this.state.Player2Win} />
 
       </div>
     )
